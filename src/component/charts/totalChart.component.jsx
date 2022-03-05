@@ -47,6 +47,9 @@ const ChartComponent = ({ owner, repo }) => {
             const lastWeek = res[res.length - 1];
             setData(createOptions(lastWeek?.days));
         })
+        return () => {
+            setData(null)
+        }
     }, [repo])
 
     if (!data) return <div>loading.. .</div>
