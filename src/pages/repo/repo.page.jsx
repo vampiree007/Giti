@@ -7,18 +7,6 @@ import { useParams } from "react-router-dom";
 import ContributorChart from "../../component/charts/contributorChart.component";
 import ChartComponent from "../../component/charts/totalChart.component";
 import ContainerComponent from "../../container/container.component";
-// import "./repo.styles.scss";
-
-const styles = (theme) => ({
-  repo: {
-    direction: "row",
-    // Match [md, ∞)
-    //       [900px, ∞)
-    [theme.breakpoints.down("xs")]: {
-      direction: "column",
-    },
-  },
-});
 
 function RepoPage() {
   const { repoName } = useParams();

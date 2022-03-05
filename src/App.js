@@ -7,7 +7,6 @@ import {
 import RepoPage from './pages/repo/repo.page';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import axioz from './configs/axios.config';
 import sagaActions from './redux/sagas/repo/repoSaga.action';
 
 const App = () => {
@@ -19,7 +18,8 @@ const App = () => {
     dispatch({
       type: sagaActions.FETCH_REPO_SAGA,
       payload: {
-        date: activeFilterDate
+        date: activeFilterDate,
+        page
       }
     })
   }, [activeFilterDate]);
@@ -35,16 +35,6 @@ const App = () => {
       }
     })
   }, [page])
-
-  // FETCHES REPOS FROM GIT
-  const fetchRepos = (func, pageNo) => {
-    let date = new Date(activeFilterDate);
-    date = date.toISOString().slice(0, 10);
-    axioz.get(`/repositories?q=created:>${date}&sort=stars&order=desc&per_page=20&page=${pageNo}`).then(res => {
-      res = pageNo === 1 ? res.data : res.data?.items;
-      dispatch(func(res))
-    })
-  }
 
   return (
     <Router>
