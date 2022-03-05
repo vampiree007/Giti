@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 import { Avatar } from '@mui/material';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilterPage } from '../../redux/features/filter.slice';
+import { setFilterPage } from '../../redux/slices/filter/filter.slice';
 import { Link } from 'react-router-dom';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({

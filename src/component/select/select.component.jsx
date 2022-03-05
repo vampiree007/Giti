@@ -3,7 +3,7 @@ import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled'
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
-import { setActiveFilterDate } from '../../redux/features/filter.slice';
+import { setActiveFilterDate } from '../../redux/slices/filter/filter.slice';
 import { useDispatch } from 'react-redux';
 
 const blue = {

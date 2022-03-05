@@ -6,9 +6,9 @@ import {
 } from "react-router-dom";
 import RepoPage from './pages/repo/repo.page';
 import { useDispatch, useSelector } from 'react-redux';
-import { addRepoData, setRepoData } from './redux/features/repo.slice';
 import { useEffect } from 'react';
 import axioz from './configs/axios.config';
+import sagaActions from './redux/sagas/repo/repoSaga.action';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -16,13 +16,24 @@ const App = () => {
 
   // STEP 1: CHANGE IN DATE
   useEffect(() => {
-    fetchRepos(setRepoData, 1);
+    dispatch({
+      type: sagaActions.FETCH_REPO_SAGA,
+      payload: {
+        date: activeFilterDate
+      }
+    })
   }, [activeFilterDate]);
 
   // STEP 2: FETCH AND ADD DATA
   useEffect(() => {
     if (page === 1) return
-    fetchRepos(addRepoData, page)
+    dispatch({
+      type: sagaActions.ADD_REPOS_SAGA,
+      payload: {
+        date: activeFilterDate,
+        page
+      }
+    })
   }, [page])
 
   // FETCHES REPOS FROM GIT

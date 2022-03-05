@@ -5,7 +5,7 @@ import DateAdapter from '@mui/lab/AdapterMoment';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import { useDispatch, useSelector } from 'react-redux';
-import { setActiveFilterDate } from '../../redux/features/filter.slice';
+import { setActiveFilterDate } from '../../redux/slices/filter/filter.slice';
 
 const DatePicker = () => {
     const dispatch = useDispatch();

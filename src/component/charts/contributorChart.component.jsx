@@ -39,7 +39,6 @@ const createOptions = (data) => {
 }
 
 const ContributorChart = ({ owner, repo }) => {
-    console.log(owner, repo)
     const [data, setData] = useState(null);
 
     useEffect(() => {
