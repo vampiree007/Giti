@@ -24,6 +24,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+        backgroundColor: '#F5F5F5',
+    },
     '&:last-child td, &:last-child th': {
         border: 0,
     },
