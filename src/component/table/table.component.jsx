@@ -30,7 +30,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:last-child td, &:last-child th': {
         border: 0,
     },
-}));
+}))
 
 export default function CustomizedTables() {
     const repos = useSelector(state => state.repo.repos);
