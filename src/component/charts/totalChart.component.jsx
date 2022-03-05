@@ -39,15 +39,17 @@ const createOptions = (data) => {
 }
 
 const ChartComponent = ({ owner, repo }) => {
-    console.log(owner, repo)
     const [data, setData] = useState(null);
 
     useEffect(() => {
         axioz.get(`https://api.github.com/repos/${owner}/${repo}/stats/commit_activity`).then(res => {
             res = res.data;
             const lastWeek = res[res.length - 1];
-            setData(createOptions(lastWeek.days));
+            setData(createOptions(lastWeek?.days));
         })
+        return () => {
+            setData(null)
+        }
     }, [repo])
 
     if (!data) return <div>loading.. .</div>

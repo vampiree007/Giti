@@ -9,9 +9,21 @@ import ChartComponent from "../../component/charts/totalChart.component";
 import ContainerComponent from "../../container/container.component";
 // import "./repo.styles.scss";
 
+const styles = (theme) => ({
+  repo: {
+    direction: "row",
+    // Match [md, ∞)
+    //       [900px, ∞)
+    [theme.breakpoints.down("xs")]: {
+      direction: "column",
+    },
+  },
+});
+
 function RepoPage() {
   const { repoName } = useParams();
   const repos = useSelector((state) => state.repo.repos);
+
   let repo = repos?.filter((repo) => {
     return repo.name === repoName;
   });
@@ -23,7 +35,7 @@ function RepoPage() {
   return (
     <ContainerComponent header={true}>
       <Card>
-        <Grid container direction={"row"}>
+        <Grid container>
           <Grid item sx={{ p: 2 }} style={{ width: "200px" }}>
             <Avatar
               sx={{ width: 165, height: 165 }}
