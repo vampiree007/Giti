@@ -57,6 +57,8 @@ const ContributorChart = ({ owner, repo }) => {
             })
             console.log(data)
             setData(createOptions(data, contributor));
+        }).catch(err => {
+            console.log(err)
         })
     }, [repo])
 

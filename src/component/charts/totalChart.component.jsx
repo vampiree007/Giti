@@ -50,6 +50,8 @@ const ChartComponent = ({ owner, repo }) => {
             res = res.data;
             const lastWeek = res[res.length - 1];
             setData(createOptions(lastWeek?.days));
+        }).catch(err => {
+            console.log(err)
         })
         return () => {
             setData(null)
