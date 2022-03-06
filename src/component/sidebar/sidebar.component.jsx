@@ -17,7 +17,7 @@ const Sidebar = () => {
                         <FilterSelect />
                     </Box>
                     <Box sx={{marginTop: '20px'}}>
-                        <DatePicker />  
+                        <DatePicker />
                     </Box>
                 </CardContent>
             </Card>
