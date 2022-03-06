@@ -3,23 +3,25 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import axioz from '../../configs/axios.config';
 
-const createOptions = (data) => {
+const createOptions = (data, categories) => {
     return {
         chart: {
-            type: 'line'
+            type: 'column'
         },
         title: {
-            text: 'Total Changes'
+            text: 'Individual Contributions'
+        },
+        subtitle:{
+            text: 'Individual Contribution past 7 Days'
         },
         yAxis: {
+            min: 0,
             title: {
                 text: 'Total Commits'
             }
         },
         xAxis: {
-            title: {
-                text: 'Range: Day 1 to 7'
-            }
+            categories
         },
         series: [
             {
@@ -45,8 +47,15 @@ const ContributorChart = ({ owner, repo }) => {
         const URL = `https://api.github.com/repos/${owner}/${repo}/stats/contributors`
         axioz.get(URL).then(res => {
             res = res.data;
-            // const lastWeek = res[res.length - 1];
-            // setData(createOptions(lastWeek.days));
+            const contributor = res.map(item => {
+                return item.author.login
+            })
+            
+            const data = res.map(item => {
+                return item.weeks[0].c
+            })
+            console.log(data)
+            setData(createOptions(data, contributor));
         })
     }, [repo])
 
@@ -54,6 +63,7 @@ const ContributorChart = ({ owner, repo }) => {
 
     return (
         <div>
+
             <HighchartsReact highcharts={Highcharts} options={data} />
         </div>
     )

@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import ContributorChart from "../../component/charts/contributorChart.component";
 import ChartComponent from "../../component/charts/totalChart.component";
 import ContainerComponent from "../../container/container.component";
+<<<<<<< HEAD
 import { styled } from "@mui/material/styles";
 import { Typography } from "@mui/material";
 
@@ -42,6 +43,8 @@ const ParagraphComponent = styled(Typography)(({ theme }) => ({
     marginBottom: "6px",
   },
 }));
+=======
+>>>>>>> 7a14abeb23395b2a83efd6c1d0b043c14b6f9f9f
 
 function RepoPage() {
   const { repoName } = useParams();
