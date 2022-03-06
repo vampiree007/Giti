@@ -61,7 +61,7 @@ const ParagraphComponent = styled(Typography)(({ theme }) => ({
 
 const RowPage = ({ repo }) => {
   return (
-    <Accordion>
+    <Accordion TransitionProps={{ unmountOnExit: true }}>
       <AccordionSummary
         expandIcon={<ExpandMoreOutlined />}
         aria-controls="panel1a-content"

@@ -20,7 +20,7 @@ export function* sagaAddReposData({payload}){
     const date = getDate(payload.date)
     try{
         let {data} = yield call(() => callAPI({
-            url: `/repositories?q=created:>${date}&sort=stars&order=desc&per_page=20&page=${payload.page}`
+            url: `/repositories?q=created:>${date}&sort=stars&order=desc&per_page=10&page=${payload.page}`
         }))
         yield put(addRepoData(data.items))
     }catch(err){
@@ -32,7 +32,7 @@ export function* sagaGetReposData({payload}){
     const date = getDate(payload.date)
     try{
         let {data} = yield call(() => callAPI({
-            url: `/repositories?q=created:>${date}&sort=stars&order=desc&per_page=20&page=1`
+            url: `/repositories?q=created:>${date}&sort=stars&order=desc&per_page=10&page=1`
         }))
         yield put(setRepoData(data))
     }catch(err){
