@@ -152,7 +152,7 @@ function RepoPage() {
                       />
                       <Typography
                         variant="p"
-                        fontSize={{ xs: 13 }}
+                        fontSize={{ xs: 13, sm: 16  }}
                         fontWeight={{ xs: 500 }}
                       >
                         {repo?.open_issues_count}
