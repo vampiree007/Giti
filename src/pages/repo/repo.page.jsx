@@ -99,7 +99,7 @@ function RepoPage() {
                     fontWeight={{ xs: 500 }}
                   >
                     Repo Link:{" "}
-                    <Typography variant="p" color={"teal"}>
+                    <Typography variant="p" color={"steelblue"}>
                       {repo?.html_url}
                     </Typography>
                   </Typography>
@@ -174,8 +174,13 @@ function RepoPage() {
                         fontWeight={{ xs: 500 }}
                       >
                         Last pushed on{" "}
-                        {moment(repo?.updated_at).format("MMMM Do YYYY, h:mm:ss a")} by{" "}
-                        {repo?.owner?.login}.
+                        <Typography variant="p" color={"teal"}>
+                          {moment(repo?.updated_at).format("MMMM Do YYYY, h:mm:ss a")}
+                        </Typography>{" "}
+                        by{" "}
+                        <Typography variant="p" color={"teal"}>
+                          {repo?.owner?.login}.
+                        </Typography>
                       </Typography>
                     </Container>
                   </Container>
