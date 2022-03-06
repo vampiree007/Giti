@@ -7,41 +7,6 @@ import { useParams } from "react-router-dom";
 import ContributorChart from "../../component/charts/contributorChart.component";
 import ChartComponent from "../../component/charts/totalChart.component";
 import ContainerComponent from "../../container/container.component";
-import { styled } from "@mui/material/styles";
-import { Typography } from "@mui/material";
-
-const AvatarStyledComponent = styled(Grid)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  width: "159px",
-  margin: "0px auto",
-  aspectRatio: 1,
-  backgroundColor: "white",
-  [theme.breakpoints.down("sm")]: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: "16px",
-    width: "200px",
-  },
-}));
-
-const Heading = styled("div")(({ theme }) => ({
-  margin: "0px",
-  padding: "0px",
-  textTransform: "capitalize",
-  [theme.breakpoints.down("xl")]: {
-    marginTop: "14px",
-  },
-}));
-
-const ParagraphComponent = styled(Typography)(({ theme }) => ({
-  margin: "0px",
-  padding: "0px",
-  [theme.breakpoints.down("xl")]: {
-    marginTop: "14px",
-    marginBottom: "6px",
-  },
-}));
 
 function RepoPage() {
   const { repoName } = useParams();
