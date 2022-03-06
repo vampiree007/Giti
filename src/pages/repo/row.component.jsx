@@ -1,5 +1,13 @@
-import { Star } from "@mui/icons-material";
-import { Avatar, Card, Container, Grid } from "@mui/material";
+import { ExpandMoreOutlined, Star } from "@mui/icons-material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Avatar,
+  Card,
+  Container,
+  Grid,
+} from "@mui/material";
 import moment from "moment";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -25,7 +33,7 @@ const AvatarStyledComponent = styled(Grid)(({ theme }) => ({
   },
 }));
 const CardComponent = styled(Grid)(({ theme }) => ({
-  boxShadow: "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
+  // boxShadow: "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
   [theme.breakpoints.down("sm")]: {},
 }));
 
@@ -51,21 +59,14 @@ const ParagraphComponent = styled(Typography)(({ theme }) => ({
   },
 }));
 
-function RepoPage() {
-  const { repoName } = useParams();
-  const repos = useSelector((state) => state.repo.repos);
-  //   const styles = useStyles();
-  let repo = repos?.filter((repo) => {
-    return repo.name === repoName;
-  });
-  repo = repo && repo[0];
-  console.log(repo);
-
-  if (!repo) return <div>loading.. .</div>;
-
+const RowPage = ({ repo }) => {
   return (
-    <ContainerComponent header={true}>
-      <Container>
+    <Accordion>
+      <AccordionSummary
+        expandIcon={<ExpandMoreOutlined />}
+        aria-controls="panel1a-content"
+        id="panel1a-header"
+      >
         <Grid>
           <CardComponent>
             <Card sx={{ p: 2, boxShadow: "none" }}>
@@ -87,7 +88,7 @@ function RepoPage() {
                       fontWeight={{ xs: 500 }}
                       textAlign={{ md: "left", xs: "center" }}
                     >
-                      {repoName}
+                      {repo.name}
                     </Typography>
                   </Heading>
                   <ParagraphComponent>
@@ -212,7 +213,9 @@ function RepoPage() {
             </Card>
           </CardComponent>
         </Grid>
+      </AccordionSummary>
 
+      <AccordionDetails>
         <Grid container spacing={3} sx={{ mt: 3 }}>
           <Grid item xs={12} md={6} mt={{ xs: 3 }}>
             <CardComponent>
@@ -229,9 +232,9 @@ function RepoPage() {
             </CardComponent>
           </Grid>
         </Grid>
-      </Container>
-    </ContainerComponent>
+      </AccordionDetails>
+    </Accordion>
   );
-}
+};
 //<ChartComponent owner={repo?.owner.login} repo={repo.name} />
-export default RepoPage;
+export default RowPage;
