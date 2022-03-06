@@ -16,7 +16,7 @@ const AvatarStyledComponent = styled(Grid)(({ theme }) => ({
   width: "159px",
   margin: "0px auto",
   aspectRatio: 1,
-  backgroundColor:"white",
+  backgroundColor: "white",
   [theme.breakpoints.down("sm")]: {
     justifyContent: "center",
     alignItems: "center",
@@ -56,146 +56,148 @@ function RepoPage() {
   if (!repo) return <div>loading.. .</div>;
 
   return (
-    <ContainerComponent header={true} sx={{p:2}}>
-      <Grid>
-        <Card sx={{ p: 2 }}>
-          <Grid container direction={{ xs: "column", sm: "row" }}>
-            <AvatarStyledComponent>
-              <Grid item>
-                <Avatar
-                  sx={{ width: "100%", height: "100%" }}
-                  variant="rounded"
-                  src={repo?.owner?.avatar_url}
-                />
-              </Grid>
-            </AvatarStyledComponent>
-            <Grid item xs>
-              <Container>
-                <Heading>
-                  <Typography
-                    variant="h1"
-                    fontSize={{ xs: 32 }}
-                    fontWeight={{ xs: 500 }}
-                    textAlign={{ sm: "left", xs: "center" }}
-                  >
-                    {repoName}
-                  </Typography>
-                </Heading>
-                <ParagraphComponent>
+    <ContainerComponent header={true}>
+      <Container>
+        <Grid>
+          <Card sx={{ p: 2 }}>
+            <Grid container direction={{ xs: "column", sm: "row" }}>
+              <AvatarStyledComponent>
+                <Grid item>
+                  <Avatar
+                    sx={{ width: "100%", height: "100%" }}
+                    variant="rounded"
+                    src={repo?.owner?.avatar_url}
+                  />
+                </Grid>
+              </AvatarStyledComponent>
+              <Grid item xs>
+                <Container>
+                  <Heading>
+                    <Typography
+                      variant="h1"
+                      fontSize={{ xs: 32 }}
+                      fontWeight={{ xs: 500 }}
+                      textAlign={{ sm: "left", xs: "center" }}
+                    >
+                      {repoName}
+                    </Typography>
+                  </Heading>
+                  <ParagraphComponent>
+                    <Typography
+                      variant="p"
+                      fontSize={{ xs: 16 }}
+                      fontWeight={{ xs: 400 }}
+                      textAlign={{ xs: "center" }}
+                      color={"gray"}
+                    >
+                      {repo?.description}
+                    </Typography>
+                  </ParagraphComponent>
                   <Typography
                     variant="p"
-                    fontSize={{ xs: 16 }}
-                    fontWeight={{ xs: 400 }}
-                    textAlign={{ xs: "center" }}
-                    color={"gray"}
+                    fontSize={{ xs: 13, sm: 16 }}
+                    fontWeight={{ xs: 500 }}
                   >
-                    {repo?.description}
-                  </Typography>
-                </ParagraphComponent>
-                <Typography
-                  variant="p"
-                  fontSize={{ xs: 13, sm: 16 }}
-                  fontWeight={{ xs: 500 }}
-                >
-                  Repo Link:{" "}
-                  <Typography variant="p" color={"teal"}>
-                    {repo?.html_url}
-                  </Typography>
-                </Typography>
-
-                <Container
-                  style={{ padding: 0 }}
-                  sx={{
-                    display: "flex",
-                    margin: "20px 0px 15px 0px",
-                  }}
-                >
-                  <Container
-                    style={{ padding: 0, margin: 0 }}
-                    sx={{
-                      display: "inline-flex",
-                      justifyContent: "left",
-                      alignItems: "center",
-                      width: "fit-content",
-                    }}
-                  >
-                    <Star style={{ color: "#ffcd3c" }} />{" "}
-                    <Typography
-                      variant="p"
-                      fontSize={{ xs: 13, sm: 16 }}
-                      fontWeight={{ xs: 500 }}
-                    >
-                      {repo?.stargazers_count}
+                    Repo Link:{" "}
+                    <Typography variant="p" color={"teal"}>
+                      {repo?.html_url}
                     </Typography>
-                  </Container>
+                  </Typography>
 
                   <Container
                     style={{ padding: 0 }}
                     sx={{
-                      display: "inline-flex",
-                      justifyContent: "left",
-                      alignItems: "center",
-                      width: "fit-content",
-                      ml: "5%",
-                      mr: 0,
+                      display: "flex",
+                      margin: "20px 0px 15px 0px",
                     }}
                   >
-                    <Avatar
-                      src="/pull-request.png"
-                      alt="pr"
-                      variant="square"
+                    <Container
+                      style={{ padding: 0, margin: 0 }}
                       sx={{
-                        width: 24,
-                        height: 24,
+                        display: "inline-flex",
+                        justifyContent: "left",
+                        alignItems: "center",
+                        width: "fit-content",
                       }}
-                    />
-                    <Typography
-                      variant="p"
-                      fontSize={{ xs: 13 }}
-                      fontWeight={{ xs: 500 }}
                     >
-                      {repo?.open_issues_count}
-                    </Typography>
-                  </Container>
-                  <Container
-                    style={{ padding: 0 }}
-                    sx={{
-                      display: "inline-flex",
-                      justifyContent: "left",
-                      alignItems: "center",
-                      width: "fit-content",
-                      ml: "5%",
-                    }}
-                  >
-                    <Typography
-                      variant="p"
-                      fontSize={{ xs: 13, sm: 16 }}
-                      fontWeight={{ xs: 500 }}
+                      <Star style={{ color: "#ffcd3c" }} />{" "}
+                      <Typography
+                        variant="p"
+                        fontSize={{ xs: 13, sm: 16 }}
+                        fontWeight={{ xs: 500 }}
+                      >
+                        {repo?.stargazers_count}
+                      </Typography>
+                    </Container>
+
+                    <Container
+                      style={{ padding: 0 }}
+                      sx={{
+                        display: "inline-flex",
+                        justifyContent: "left",
+                        alignItems: "center",
+                        width: "fit-content",
+                        ml: "5%",
+                        mr: 0,
+                      }}
                     >
-                      Last pushed on{" "}
-                      {moment(repo?.updated_at).format("MMMM Do YYYY, h:mm:ss a")} by{" "}
-                      {repo?.owner?.login}.
-                    </Typography>
+                      <Avatar
+                        src="/pull-request.png"
+                        alt="pr"
+                        variant="square"
+                        sx={{
+                          width: 24,
+                          height: 24,
+                        }}
+                      />
+                      <Typography
+                        variant="p"
+                        fontSize={{ xs: 13 }}
+                        fontWeight={{ xs: 500 }}
+                      >
+                        {repo?.open_issues_count}
+                      </Typography>
+                    </Container>
+                    <Container
+                      style={{ padding: 0 }}
+                      sx={{
+                        display: "inline-flex",
+                        justifyContent: "left",
+                        alignItems: "center",
+                        width: "fit-content",
+                        ml: "5%",
+                      }}
+                    >
+                      <Typography
+                        variant="p"
+                        fontSize={{ xs: 13, sm: 16 }}
+                        fontWeight={{ xs: 500 }}
+                      >
+                        Last pushed on{" "}
+                        {moment(repo?.updated_at).format("MMMM Do YYYY, h:mm:ss a")} by{" "}
+                        {repo?.owner?.login}.
+                      </Typography>
+                    </Container>
                   </Container>
                 </Container>
-              </Container>
+              </Grid>
             </Grid>
-          </Grid>
-        </Card>
-      </Grid>
+          </Card>
+        </Grid>
 
-      <Grid container spacing={3} sx={{ mt: 3 }}>
-        <Grid item xs={12} md={6} mt={{ xs: 3 }}>
-          <Card>
-            <ChartComponent owner={repo?.owner.login} repo={repo.name} />
-          </Card>
+        <Grid container spacing={3} sx={{ mt: 3 }}>
+          <Grid item xs={12} md={6} mt={{ xs: 3 }}>
+            <Card>
+              <ChartComponent owner={repo?.owner.login} repo={repo.name} />
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={6} mt={{ xs: 3 }} mb={{ xs: 5 }}>
+            <Card>
+              <ContributorChart owner={repo?.owner.login} repo={repo.name} />
+            </Card>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={6} mt={{ xs: 3 }} mb={{ xs: 5 }}>
-          <Card>
-            <ContributorChart owner={repo?.owner.login} repo={repo.name} />
-          </Card>
-        </Grid>
-      </Grid>
+      </Container>
     </ContainerComponent>
   );
 }
