@@ -16,8 +16,7 @@ const AvatarStyledComponent = styled(Grid)(({ theme }) => ({
   width: "159px",
   margin: "0px auto",
   aspectRatio: 1,
-
-  boxShadow: "rgba(17, 17, 26, 0.1) 0px 0px 16px",
+  backgroundColor:"white",
   [theme.breakpoints.down("sm")]: {
     justifyContent: "center",
     alignItems: "center",
@@ -57,7 +56,7 @@ function RepoPage() {
   if (!repo) return <div>loading.. .</div>;
 
   return (
-    <ContainerComponent header={true}>
+    <ContainerComponent header={true} sx={{p:2}}>
       <Grid>
         <Card sx={{ p: 2 }}>
           <Grid container direction={{ xs: "column", sm: "row" }}>
@@ -65,7 +64,7 @@ function RepoPage() {
               <Grid item>
                 <Avatar
                   sx={{ width: "100%", height: "100%" }}
-                  variant="square"
+                  variant="rounded"
                   src={repo?.owner?.avatar_url}
                 />
               </Grid>
