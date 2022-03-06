@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import axioz from '../../configs/axios.config';
+import SkeletonComponent from '../skeleton/skeleton.component';
 
 const createOptions = (data) => {
     return {
@@ -55,7 +56,7 @@ const ChartComponent = ({ owner, repo }) => {
         }
     }, [repo])
 
-    if (!data) return <div>loading.. .</div>
+    if (!data) return <SkeletonComponent />
 
     return (
         <div>

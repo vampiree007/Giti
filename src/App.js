@@ -4,7 +4,6 @@ import {
   Route,
   Routes
 } from "react-router-dom";
-import RepoPage from './pages/repo/repo.page';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import sagaActions from './redux/sagas/repo/repoSaga.action';
@@ -40,7 +39,6 @@ const App = () => {
     <Router>
       <Routes>
         <Route exact path="/" element={<HomePage />} />
-        <Route exact path="/repo/:repoName" element={<RepoPage />} />
       </Routes>
     </Router>
   )

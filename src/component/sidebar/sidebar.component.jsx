@@ -7,7 +7,7 @@ import DatePicker from '../datePicker/datePicker.component';
 
 const Sidebar = () => {
     return (
-        <Grid container style={{position: 'relative', position: 'sticky', top: '20px'}}>
+        <Grid container style={{position: 'sticky', top: '20px'}}>
             <Card style={{ width: '100%', backgroundColor: '#fff' }}>
                 <CardContent>
                     <Typography sx={{ fontSize: 12, fontWeight: 500, display: 'flex', alignItems: 'center' }} color="text.secondary" gutterBottom>

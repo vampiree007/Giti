@@ -5,16 +5,12 @@ import {
   AccordionSummary,
   Avatar,
   Card,
-  Container,
   Grid,
 } from "@mui/material";
 import moment from "moment";
 import React from "react";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import ContributorChart from "../../component/charts/contributorChart.component";
-import ChartComponent from "../../component/charts/totalChart.component";
-import ContainerComponent from "../../container/container.component";
+import ContributorChart from "../charts/contributorChart.component";
+import ChartComponent from "../charts/totalChart.component";
 import { styled } from "@mui/material/styles";
 import { Typography } from "@mui/material";
 
@@ -33,7 +29,6 @@ const AvatarStyledComponent = styled(Grid)(({ theme }) => ({
   },
 }));
 const CardComponent = styled(Grid)(({ theme }) => ({
-  // boxShadow: "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
   [theme.breakpoints.down("sm")]: {},
 }));
 
@@ -236,5 +231,4 @@ const RowPage = ({ repo }) => {
     </Accordion>
   );
 };
-//<ChartComponent owner={repo?.owner.login} repo={repo.name} />
 export default RowPage;
