@@ -28,7 +28,8 @@ const createOptions = (data) => {
         series: [
             {
                 name: 'Commits',
-                data: data
+                data: data,
+                color: 'orange',
             }
         ],
         plotOptions: {
@@ -42,11 +43,11 @@ const createOptions = (data) => {
     };
 }
 
-const ChartComponent = ({ owner, repo }) => {
+const ChartComponent = ({ repo }) => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        axioz.get(`https://api.github.com/repos/${owner}/${repo}/stats/commit_activity`).then(res => {
+        axioz.get(`https://api.github.com/repos/${repo?.owner.login}/${repo.name}/stats/commit_activity`).then(res => {
             res = res.data;
             const lastWeek = res[res.length - 1];
             setData(createOptions(lastWeek?.days));

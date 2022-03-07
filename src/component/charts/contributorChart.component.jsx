@@ -4,7 +4,7 @@ import HighchartsReact from 'highcharts-react-official';
 import axioz from '../../configs/axios.config';
 import SkeletonComponent from '../skeleton/skeleton.component';
 
-const createOptions = (data, categories) => {
+const createOptions = (data, categories, title) => {
     return {
         chart: {
             type: 'column'
@@ -18,7 +18,7 @@ const createOptions = (data, categories) => {
         yAxis: {
             min: 0,
             title: {
-                text: 'Total Commits'
+                text: `Total ${title}`
             }
         },
         xAxis: {
@@ -26,8 +26,9 @@ const createOptions = (data, categories) => {
         },
         series: [
             {
-                name: 'Commits',
-                data: data
+                name: title,
+                data: data,
+                color: '#55BF3B',
             }
         ],
         plotOptions: {
@@ -41,11 +42,11 @@ const createOptions = (data, categories) => {
     };
 }
 
-const ContributorChart = ({ owner, repo }) => {
+const ContributorChart = ({ repo, selectValue }) => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        const URL = `https://api.github.com/repos/${owner}/${repo}/stats/contributors`
+        const URL = `https://api.github.com/repos/${repo?.owner.login}/${repo.name}/stats/contributors`
         axioz.get(URL).then(res => {
             res = res.data;
             const contributor = res.map(item => {
@@ -53,14 +54,14 @@ const ContributorChart = ({ owner, repo }) => {
             })
             
             const data = res.map(item => {
-                return item.weeks[0].c
+                return item.weeks[0][selectValue]
             })
-            console.log(data)
-            setData(createOptions(data, contributor));
+            let title = selectValue === 'c' ? 'Commits' : selectValue === 'a' ? 'Additions' : 'Deletions'
+            setData(createOptions(data, contributor, title));
         }).catch(err => {
             console.log(err)
         })
-    }, [repo])
+    }, [selectValue, repo])
 
     if (!data) return <SkeletonComponent />
 
