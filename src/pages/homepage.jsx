@@ -3,6 +3,7 @@ import StickyHeadTable from "../component/table/table.component";
 import { Grid } from "@mui/material";
 import Sidebar from "../component/sidebar/sidebar.component";
 
+// HOMEPAGE
 const HomePage = () => {
   return (
     <div>

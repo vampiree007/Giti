@@ -9,6 +9,8 @@ import {
 } from "@mui/material";
 import { Star } from "@mui/icons-material";
 
+
+// STYLES COMPONENTS DEFINED HERE (CUSTOM COMPONENTS)
 const AvatarStyledComponent = styled(Grid)(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
@@ -47,6 +49,7 @@ const ParagraphComponent = styled(Typography)(({ theme }) => ({
     },
 }));
 
+// TABLE ROW TOP PART INCLUDES ACCORDIAN TOP SECTION
 const CardTopComponent = ({repo}) => {
     return (
         <Grid sx={{width: '100%'}}>

@@ -8,6 +8,7 @@ import React from "react";
 import CardTopComponent from "./tableCard/tableCardTop.component";
 import TableCardBottom from "./tableCard/tableCardBottom.component";
 
+// DEFINES INDIVIDUAL ROW OF REPOS TABLE
 const RowPage = ({ repo }) => {
 
   return (

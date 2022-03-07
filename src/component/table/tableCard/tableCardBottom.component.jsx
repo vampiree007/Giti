@@ -5,15 +5,18 @@ import ChartComponent from '../../charts/totalChart.component'
 import CustomSelect from '../../select/select.component'
 import FilterListIcon from '@mui/icons-material/FilterList'
 
+// CHART FILTER OPTIONS DEFINITION
 const options = [
     { name: 'Commits', value: "c" },
     { name: 'Additions', value: "a" },
     { name: 'Deletions', value: "d" },
 ]
 
+// TABLE ROW BOTTOM PART INCLUDES ACCORDIAN BOTTOM SECTION
 const TableCardBottom = ({ repo }) => {
     const [selectValue, setSelectValue] = useState(options[0].value)
 
+    // SET SELECTED FILTER OPTION TO STATE
     const handleChange = useCallback((value) => {
         setSelectValue(value)
     }, [])

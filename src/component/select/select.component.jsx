@@ -107,9 +107,9 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
   return <SelectUnstyled {...props} ref={ref} components={components} />;
 });
 
-export default function UnstyledSelect({options, fn}) {
+export default function UnstyledSelect({options, fn, defValue}) {
   return (
-    <CustomSelect defaultValue={options && options[0].value} onChange={fn}>
+    <CustomSelect defaultValue={defValue || options[0].value} onChange={fn}>
       {
         options && options.map((option, i) => (
           <StyledOption key={option.name} value={option.value}>{option.name}</StyledOption>

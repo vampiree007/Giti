@@ -7,18 +7,26 @@ import DatePicker from '../datePicker/datePicker.component';
 import { useDispatch } from 'react-redux';
 import { setActiveFilterDate } from '../../redux/slices/filter/filter.slice';
 
+// HOMEPAGE SIDEBAR CONTAINS FILTER OPTIONS
 const Sidebar = () => {
     const dispatch = useDispatch();
+
+    // FILTER OPTIONS FOR DAYS SELECTION
     const options = [
         {name: 'Last 7 Days', value: 604800000},
         {name: 'Last 14 Days', value: 604800000 * 2},
         {name: 'Last 28 Days', value: 604800000 * 4},
+        {name: 'Custom Date', value: 'custom'},
     ]
     
     const handleChange = useCallback((value) => {
+        // 1: RETURN IF VALUE IS CUSTOM
+        if(value === 'custom') return
+        // 2: HANDLE VALUE
         const ms = Date.now() - value;
         dispatch(setActiveFilterDate(ms));
     }, [dispatch])
+
     return (
         <Grid container style={{position: 'sticky', top: '20px'}}>
             <Card style={{ width: '100%', backgroundColor: '#fff' }}>

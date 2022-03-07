@@ -1,4 +1,4 @@
-import HomePage from './pages';
+import HomePage from './pages/homepage';
 import {
   BrowserRouter as Router,
   Route,
@@ -12,7 +12,7 @@ const App = () => {
   const dispatch = useDispatch();
   const { activeFilterDate, page } = useSelector(state => state.filter);
 
-  // STEP 1: CHANGE IN DATE
+  // STEP 1: FETCH REPOS INITIALLY AND ON CHANGE IN DATE
   useEffect(() => {
     dispatch({
       type: sagaActions.FETCH_REPO_SAGA,
@@ -23,7 +23,7 @@ const App = () => {
     })
   }, [activeFilterDate]);
 
-  // STEP 2: FETCH AND ADD DATA
+  // CONDITIONAL: FETCH AND ADD DATA ON PAGE INCREMENT | PAGE INCREMENT FROM: TABLE COMPONENT
   useEffect(() => {
     if (page === 1) return
     dispatch({
@@ -35,6 +35,7 @@ const App = () => {
     })
   }, [page])
 
+  // DEFINE ROUTES AND RENDER UI
   return (
     <Router>
       <Routes>

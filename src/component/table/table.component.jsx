@@ -8,13 +8,14 @@ import { setFilterPage } from "../../redux/slices/filter/filter.slice";
 import RowPage from "./row.component";
 import SkeletonComponent from "../skeleton/skeleton.component";
 
-
+// TABLE COMPONENT CONTAINS REPO LIST
 export default function CustomizedTables() {
   const repos = useSelector((state) => state.repo.repos);
   const { page } = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
-  const fetchData = () => {
+  // INCREMENT PAGE ON REACHING END
+  const incrementPageCount = () => {
     dispatch(setFilterPage(page + 1));
   };
 
@@ -23,7 +24,7 @@ export default function CustomizedTables() {
     <TableContainer component={Paper}>
       <InfiniteScroll
         dataLength={repos?.length}
-        next={fetchData}
+        next={incrementPageCount}
         hasMore={true}
         loader={<SkeletonComponent />}
       >
