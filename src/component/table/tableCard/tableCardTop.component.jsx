@@ -43,7 +43,7 @@ const ParagraphComponent = styled(Typography)(({ theme }) => ({
     [theme.breakpoints.down("md")]: {
         textAlign: "center",
     },
-    [theme.breakpoints.down("xl")]: {
+    [theme.breakpoints.down("md")]: {
         marginTop: "14px",
         marginBottom: "6px",
     },
@@ -53,7 +53,7 @@ const CardTopComponent = ({repo}) => {
     return (
         <Grid sx={{width: '100%'}}>
             <CardComponent>
-                <Card sx={{ py: 2, px:1, boxShadow: "none" }}>
+                <Card sx={{ py: 2, boxShadow: "none" }}>
                     <Grid container direction={{ xs: "column", md: "row" }} spacing={3}>
                         <Grid item>
                             <AvatarStyledComponent>
@@ -78,12 +78,12 @@ const CardTopComponent = ({repo}) => {
                             <ParagraphComponent>
                                 <Typography
                                     variant="p"
-                                    fontSize={{ xs: 16 }}
+                                    fontSize={{ xs: 15 }}
                                     fontWeight={{ xs: 400 }}
                                     textAlign={{ md: "right", xs: "center" }}
                                     color={"gray"}
                                 >
-                                    {repo?.description}
+                                    {repo?.description || '---'}
                                 </Typography>
                             </ParagraphComponent>
                             <ParagraphComponent>
