@@ -42,8 +42,6 @@ const ParagraphComponent = styled(Typography)(({ theme }) => ({
     textAlign: "left",
     [theme.breakpoints.down("md")]: {
         textAlign: "center",
-    },
-    [theme.breakpoints.down("md")]: {
         marginTop: "14px",
         marginBottom: "6px",
     },

@@ -61,10 +61,6 @@ const ContributorChart = ({ repo, selectValue }) => {
         }).catch(err => {
             console.log(err)
         })
-
-        return () => {
-            setData(null)
-        }
     }, [selectValue, repo])
 
     if (!data) return <SkeletonComponent />
