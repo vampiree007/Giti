@@ -13,7 +13,7 @@ const createOptions = (data) => {
             text: 'Total Changes'
         },
         subtitle:{
-            text: 'Total Changes in last 7 days'
+            text: 'Total Changes in last one year'
         },
         yAxis: {
             title: {
@@ -22,7 +22,7 @@ const createOptions = (data) => {
         },
         xAxis: {
             title: {
-                text: 'Range: Day 1 to 7'
+                text: 'Range: Week 1 to 52'
             }
         },
         series: [
@@ -35,7 +35,7 @@ const createOptions = (data) => {
         plotOptions: {
             series: {
                 label: {
-                    connectorAllowed: false
+                    connectorAllowed: true
                 },
                 pointStart: 1
             }
@@ -49,8 +49,13 @@ const ChartComponent = ({ repo }) => {
     useEffect(() => {
         axioz.get(`https://api.github.com/repos/${repo?.owner.login}/${repo.name}/stats/commit_activity`).then(res => {
             res = res.data;
-            const lastWeek = res[res.length - 1];
-            setData(createOptions(lastWeek?.days));
+            const frequency = res.map(item => {
+                return item.total
+            })
+            const dates =  res.map(item => {
+                return item.week
+            })
+            setData(createOptions(frequency));
         }).catch(err => {
             console.log(err)
         })
