@@ -21,9 +21,16 @@ const createOptions = (data) => {
             }
         },
         xAxis: {
+            tickInterval: 7 * 24 * 3600 * 1000, // one week
+            tickWidth: 0,
+            gridLineWidth: 1,
             title: {
                 text: 'Range: Week 1 to 52'
             }
+        },
+        tooltip: {
+            shared: true,
+            crosshairs: true
         },
         series: [
             {
@@ -51,9 +58,6 @@ const ChartComponent = ({ repo }) => {
             res = res.data;
             const frequency = res.map(item => {
                 return item.total
-            })
-            const dates =  res.map(item => {
-                return item.week
             })
             setData(createOptions(frequency));
         }).catch(err => {
