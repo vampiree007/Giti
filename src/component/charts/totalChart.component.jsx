@@ -12,7 +12,7 @@ const createOptions = (data) => {
         title: {
             text: 'Total Changes'
         },
-        subtitle:{
+        subtitle: {
             text: 'Total Changes in last one year'
         },
         yAxis: {
@@ -29,8 +29,13 @@ const createOptions = (data) => {
             }
         },
         tooltip: {
-            shared: true,
-            crosshairs: true
+            shared: false,
+            crosshairs: true,
+            formatter: function () {
+                let text = `Week: <b>${this.x}</b>  <br>`;
+                text += `Changes: <b>${this.y}</b>  <br>`;
+                return text
+            }
         },
         series: [
             {

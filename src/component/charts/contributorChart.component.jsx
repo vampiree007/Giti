@@ -4,37 +4,47 @@ import HighchartsReact from 'highcharts-react-official';
 import axioz from '../../configs/axios.config';
 import SkeletonComponent from '../skeleton/skeleton.component';
 
-const createOptions = (data, categories, title) => {
+
+const createOptions = (data,title) => {
     return {
         chart: {
-            type: 'column'
+            type: 'line'
         },
         title: {
-            text: 'Individual Contributions'
+            text: `Total ${title}`
         },
-        subtitle:{
-            text: 'Individual Contribution past 7 Days'
+        subtitle: {
+            text: `Total ${title} in last one year`
         },
         yAxis: {
-            min: 0,
             title: {
-                text: `Total ${title}`
+                text: `${title}`
             }
         },
         xAxis: {
-            categories
+            tickInterval: 7 * 24 * 3600 * 1000, // one week
+            tickWidth: 0,
+            gridLineWidth: 1,
+            title: {
+                text: 'Range: Week 1 to 52'
+            },
         },
-        series: [
-            {
-                name: title,
-                data: data,
-                color: '#55BF3B',
+        tooltip: {
+            shared: false,
+            useHTML: true,
+            formatter: function () {
+                let text = `Week: <b>${this.x}</b>  <br>`;
+                text += `${title}: <b>${this.y}</b>  <br>`;
+                text += `Contributor: <b>${this.series.name}</b> <br>`
+                return text;
             }
-        ],
+
+        },
+        series: data,
         plotOptions: {
             series: {
                 label: {
-                    connectorAllowed: false
+                    connectorAllowed: true
                 },
                 pointStart: 1
             }
@@ -42,22 +52,38 @@ const createOptions = (data, categories, title) => {
     };
 }
 
+const filler = (num) => {
+    let arr = [];
+    for(let i = 1; i <= num; i++){
+        arr.push(0)
+    }
+    return arr
+}
+
 const ContributorChart = ({ repo, selectValue }) => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        const URL = `https://api.github.com/repos/${repo?.owner.login}/${repo.name}/stats/contributors`
+        const URL = `https://api.github.com/repos/${repo?.owner?.login}/${repo.name}/stats/contributors`;
         axioz.get(URL).then(res => {
             res = res.data;
-            const contributor = res.map(item => {
-                return item.author.login
+            res = res.map(contro => {
+                let data = contro.weeks.map(item => {
+                    return item[selectValue]    
+                })
+                const weeks = data.length;
+                if(weeks < 52){
+                    const fillWeeks = 52 - data.length;
+                    const fillerArray = filler(fillWeeks);
+                    data = [...fillerArray, ...data]
+                }
+                return {
+                    name: contro.author.login,
+                    data
+                }
             })
-            
-            const data = res.map(item => {
-                return item.weeks[0][selectValue]
-            })
-            let title = selectValue === 'c' ? 'Commits' : selectValue === 'a' ? 'Additions' : 'Deletions'
-            setData(createOptions(data, contributor, title));
+            let title = selectValue === 'c' ? 'Commits' : selectValue === 'a' ? 'Additions' : 'Deletions'; 
+            setData(createOptions(res, title));
         }).catch(err => {
             console.log(err)
         })

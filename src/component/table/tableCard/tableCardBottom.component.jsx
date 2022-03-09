@@ -30,13 +30,13 @@ const TableCardBottom = ({ repo }) => {
                 </Box>
             </Grid>
             <Grid container spacing={3}>
-                <Grid item xs={12} md={6} mt={{ xs: 3 }}>
-                    <Card sx={{ p: 2, boxShadow: "none" }}>
+                <Grid item xs={12} md={12} mt={{ xs: 1 }}>
+                    <Card sx={{ p: 1, boxShadow: "none" }}>
                         <ChartComponent repo={repo} />
                     </Card>
                 </Grid>
-                    <Grid item xs={12} md={6} mt={{ xs: 3 }} mb={{ xs: 5 }}>
-                        <Card sx={{ p: 2, boxShadow: "none" }}>
+                    <Grid item xs={12} md={12} mb={{ xs: 3 }}>
+                        <Card sx={{ p: 1, boxShadow: "none" }}>
                             <ContributorChart repo={repo} selectValue={selectValue} />
                         </Card>
                     </Grid>
