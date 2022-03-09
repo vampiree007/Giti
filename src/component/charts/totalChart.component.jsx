@@ -12,9 +12,6 @@ const createOptions = (data) => {
         title: {
             text: 'Total Changes'
         },
-        subtitle: {
-            text: 'Total Changes in last one year'
-        },
         yAxis: {
             title: {
                 text: 'Total Commits'

@@ -11,10 +11,7 @@ const createOptions = (data,title) => {
             type: 'line'
         },
         title: {
-            text: `Total ${title}`
-        },
-        subtitle: {
-            text: `Total ${title} in last one year`
+            text: `Contributor Changes`
         },
         yAxis: {
             title: {
